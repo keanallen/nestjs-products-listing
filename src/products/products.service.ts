@@ -11,7 +11,7 @@ export class ProductsService {
   }
 
   create(productDto: CreateProductDto): CreateProductDto {
-    const newProduct = {
+    const newProduct: Product = {
       id: Date.now(),
       ...productDto,
     };
