@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ProductsModule } from './products/products.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 const typeORM = TypeOrmModule.forRoot({
   type: 'mariadb',
@@ -16,8 +17,13 @@ const typeORM = TypeOrmModule.forRoot({
   synchronize: true,
 });
 
+const configModule = ConfigModule.forRoot({
+  isGlobal: true,
+  envFilePath: '.env',
+});
+
 @Module({
-  imports: [ProductsModule, AuthModule, typeORM],
+  imports: [ProductsModule, AuthModule, typeORM, configModule],
   controllers: [AppController],
   providers: [AppService],
 })
