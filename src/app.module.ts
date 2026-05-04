@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductsModule } from './products/products.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 
 const typeORM = TypeOrmModule.forRoot({
   type: 'mariadb',
@@ -16,7 +17,7 @@ const typeORM = TypeOrmModule.forRoot({
 });
 
 @Module({
-  imports: [ProductsModule, typeORM],
+  imports: [ProductsModule, AuthModule, typeORM],
   controllers: [AppController],
   providers: [AppService],
 })
